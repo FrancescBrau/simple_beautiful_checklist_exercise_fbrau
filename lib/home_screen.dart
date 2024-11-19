@@ -5,9 +5,16 @@ import 'package:simple_beautiful_checklist_exercise/shared/database_repository.d
 import 'features/task_list/screens/list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.repository});
+  const HomeScreen({
+    super.key,
+    required this.repository,
+    required this.toggleTheme,
+    required this.isDarkTheme,
+  });
 
   final DatabaseRepository repository;
+  final VoidCallback toggleTheme;
+  final bool isDarkTheme;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -16,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedNavBarIndex = 0;
   List<Widget> _navBarWidgets = [];
+  final List<String> _titles = ['Meine Checkliste', 'Task-Statistik'];
 
   @override
   void initState() {
@@ -37,6 +45,18 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(_titles[_selectedNavBarIndex]),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: widget.toggleTheme,
+            icon: Icon(
+              widget.isDarkTheme ? Icons.dark_mode : Icons.light_mode,
+            ),
+          ),
+        ],
+      ),
       body: _navBarWidgets[_selectedNavBarIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

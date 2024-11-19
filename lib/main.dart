@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
+import 'package:simple_beautiful_checklist_exercise/config/themes.dart';
+
 import 'package:simple_beautiful_checklist_exercise/shared/database_repository.dart';
 import 'package:simple_beautiful_checklist_exercise/shared/shared_preferences_repository.dart';
 
@@ -10,13 +12,12 @@ void main() async {
   // Wird benötigt, um auf SharedPreferences zuzugreifen
   WidgetsFlutterBinding.ensureInitialized();
 
-  // TODO: Hier statt MockDatabase() ein SharedPreferencesRepository() verwenden.
   final DatabaseRepository repository = SharedPreferencesRepository();
 
   runApp(MainApp(repository: repository));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({
     super.key,
     required this.repository,
@@ -25,26 +26,33 @@ class MainApp extends StatelessWidget {
   final DatabaseRepository repository;
 
   @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  bool isDarkTheme = true;
+
+  void _toggleTheme() {
+    setState(() {
+      isDarkTheme = !isDarkTheme;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        textTheme: GoogleFonts.robotoMonoTextTheme(Theme.of(context).textTheme),
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        textTheme: GoogleFonts.robotoMonoTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
-        ),
-      ),
-      themeMode: ThemeMode.light,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
       title: 'Checklisten App',
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => HomeScreen(
-              repository: repository,
+              repository: widget.repository,
+              toggleTheme: _toggleTheme,
+              isDarkTheme: isDarkTheme,
             ),
       },
     );

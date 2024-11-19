@@ -36,9 +36,6 @@ class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Meine Checkliste'),
-      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : Column(

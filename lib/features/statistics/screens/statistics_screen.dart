@@ -32,9 +32,6 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     loadItemCount();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Task-Statistik"),
-      ),
       body: Center(
         child: Column(
           children: [
