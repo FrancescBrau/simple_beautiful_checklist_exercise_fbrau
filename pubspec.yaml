@@ -1,6 +1,6 @@
 name: simple_beautiful_checklist_exercise
 description: "A small but beautiful flutter checklist app to practice using SharedPreferences"
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
   google_fonts: ^6.2.1
   shared_preferences: ^2.3.2
   shimmer: ^3.0.0
+  flutter_launcher_icons: ^0.14.1
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +21,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/icon.png
