@@ -39,9 +39,7 @@ class TaskCounterCard extends StatelessWidget {
               const Expanded(
                 child: Text(
                   "Anzahl der offenen Tasks",
-                  style: TextStyle(
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(fontSize: 18, color: Colors.blueGrey),
                 ),
               ),
             ],

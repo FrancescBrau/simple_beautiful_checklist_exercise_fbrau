@@ -11,7 +11,10 @@ class EmptyContent extends StatelessWidget {
         children: [
           Icon(Icons.sentiment_satisfied_alt, size: 64),
           SizedBox(height: 10),
-          Text('Alle Aufgaben erledigt'),
+          Text(
+            'Alle Aufgaben erledigt',
+            style: TextStyle(color: Colors.blueGrey),
+          ),
         ],
       ),
     );
